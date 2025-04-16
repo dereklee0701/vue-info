@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script >
+        let person = {
+            name : '홍길동',
+            age : 20
+        }
+
+        // vue2 방식
+        /* 
+            크롬 콘솔 에서 p.name='hello' , p.age=22 로 변경 하면 p / person 이 변경 된다
+            단점은 요소 수 만큼 get,set 함수를 만들어 줘야 함 물론 for 문으로 처리 해도 됨
+        */
+/* 
+        let p = {}
+        Object.defineProperty(p,'name',{
+            configurable:true,
+            get(){ 
+                return person.name
+            },
+            set(value){ 
+                console.log('[name]데이터 변경 감지 화면 랜더링!')
+                person.name = value
+            }
+        })
+        Object.defineProperty(p,'age',{
+            configurable:true,
+            get(){ 
+                return person.age
+            },
+            set(value){ 
+                console.log('[age]데이터 변경 감지 화면 랜더링!')
+                person.age = value
+            }
+        })
+         */
+    
+         // vue3 방식
+         /* 
+            크롬 콘솔 에서 p.name='hello' , p.age=22 로 변경 하면 p / person 이 변경 된다
+            Reflect [반사] 방식은 에러 발생해도 넘어감 , vue3 코어에서 해당 방식 사용함
+         */
+         const p = new Proxy(person,{
+            get(target,propName){
+                // return target[propName] 
+                return Reflect.get(target,propName) 
+            },
+            set(target,propName,value){ // 추가 / 변경 동시
+                console.log(`[${propName}]요소 변경 감지 화면 랜더링!`)
+                // target[propName] = value
+                Reflect.set(target,propName,value)
+            },
+            deleteProperty(target,propName){    // 삭제
+                console.log(`[${propName}]요소 삭제 감지 화면 랜더링@@`)
+                // return delete target[propName]
+                return Reflect.deleteProperty(target,propName)
+            }
+         })
+    </script>
+</body>
+</html>
