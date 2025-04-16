@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>VUE 가 아닌 일반JS 로 웹 브라우져 에 데이터 저장</h2>
+    <button onclick="save()">저장</button>
+    <button onclick="read()">읽기</button>
+    <button onclick="remove()">삭제</button>
+    <button onclick="removeAll()">전체삭제</button>
+
+    <script type="text/javascript">
+        function save(){
+            sessionStorage.setItem('msg','hello')
+            sessionStorage.setItem('age',20)
+            let p = {name:'홍길동',sex:'남'}
+            sessionStorage.setItem('person',JSON.stringify(p))
+        }
+
+        function read(){
+            console.log(sessionStorage.getItem('msg'))
+            console.log(sessionStorage.getItem('age'))
+            console.log(JSON.parse(sessionStorage.getItem('person')) )
+        }
+        function remove(){
+            sessionStorage.removeItem('msg')
+        }
+        function removeAll(){
+            sessionStorage.clear()
+        }
+    </script>
+</body>
+</html>
