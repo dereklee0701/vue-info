@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+    
+    <div id="root">
+        <h3 v-once>초기값 : {{n}}</h3>
+        <h3 >현재값 : {{n}}</h3>
+        <button @click="n++">n+1</button>
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false
+
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                n:1,
+            },
+        })
+    </script>
+</body>
+</html>

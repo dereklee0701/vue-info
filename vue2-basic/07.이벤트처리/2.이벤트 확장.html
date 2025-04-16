@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+
+    <div id="root">
+        <h1>이름 : {{name}}</h1>
+        <a href="www.naver.com" @click.prevent="showInfo">네이버</a>    <!-- e.preventDefault() 와 동일 -->
+
+        <div class="demo1" @click="showInfo">
+            <button @click.stop="showInfo">click1</button>  <!-- 동일한 click 이벤트 내부라서 원래는 2번 호출됨 -->
+            <!-- <a href="www.naver.com" @click.prevent.stop="showInfo">click1</a>  -->  <!-- 2가지 이어서 사용 가능 -->
+        </div>
+
+        <button @click.once="showInfo">click2</button>  <!-- 1번만 실행함 -->
+
+        <!-- 
+            나머지들은 참고
+            capture : 이벤트가 캡처 모드에서 발생합니다 
+            self : 오직 event.target이 현재 작업 중인 요소일 때만 이벤트가 발생합니다
+            passive : 이벤트의 기본 동작이 즉시 실행되며, 이벤트 콜백이 완료될 때까지 기다릴 필요가 없습니다
+         -->
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false 
+
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                name:'홍길동',
+            },
+            methods:{
+                showInfo(){
+                    alert('hello')
+                },
+            }
+        })
+
+    </script>
+</body>
+</html>

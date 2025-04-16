@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+    
+    <div id="root">
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false 
+        /* 
+            data 에 데이터 가 몇 층 있으면 전부 다 set/get 함수로 처리 한다
+            그래서 모든 데이터 를 set 으로 수정 , get 으로 화면에 출력 이 가능
+        */
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                name:'hello',
+                addr:'aaa',
+                school:{
+                    name:'hh',
+                    test:{
+                        a:'dd'
+                    },
+                    student:[
+                        {name:'tom',age:22}
+                    ]
+                }
+            },
+        })
+
+    </script>
+</body>
+</html>

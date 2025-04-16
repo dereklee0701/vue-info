@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+    
+    <div id="root">
+        <h2>회원</h2>
+        <button @click="update">홍길동 데이터 변경</button>
+        <ul>
+            <li v-for="(itm,index) in persons" :key="index">
+                {{itm.name}}-{{itm.age}}-{{itm.sex}}
+            </li>
+        </ul>
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false 
+    
+        // computed 로 구현
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                keyWorld:'',
+                sortType:0,
+                persons:[
+                    {id:'001',name:'홍길동',age:31,sex:'F'},
+                    {id:'002',name:'김길동',age:33,sex:'F'},
+                    {id:'003',name:'사기다마',age:19,sex:'M'},
+                    {id:'004',name:'사기군',age:20,sex:'M'},
+                ],
+            },
+            methods: {
+                update(){
+                    // 변경된 데이터 화면데 노출됨
+                    // this.persons[0].name = 'hello'
+                    // this.persons[0].age = 20
+                    // this.persons[0].sex = 'hello'
+
+                    // 데이터 는 병경 햇는데 화면에서 변화 없음 [console : vm.persons[0] 시 변경된 데이터 확인]
+                    this.persons[0] = {id:'001',name:'hello',age:31,sex:'hello'}
+                }
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+    
+    <div id="root">
+        <h1>오늘은 {{info}}</h1>
+        <button @click="change">click</button>
+        <hr/>
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false 
+
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                isHot:false,
+                number:{
+                    a:1,
+                    b:2
+                }
+            },
+            computed:{
+                info(){
+                    return this.isHot ? '덥다' : '춥다'
+                }
+            },
+            methods:{
+                change(){
+                    this.isHot = !this.isHot 
+                } 
+            },
+            
+            watch:{
+                /* 
+                isHot:{
+                    // deep:true,
+                    // immediate:true,
+                    handler(newVal,oldVal){ // isHot 값 변경시 호출 됨
+                        console.log('@',newVal,oldVal)
+                    }
+                },
+                  */  
+                // 간소화 방식 : handler 함수만 존재시 가능
+                isHot(newVal,oldVal){
+                    console.log('@',newVal,oldVal)
+                }
+            } 
+            
+        })
+        /* 
+        vm.$watch('isHot',{
+            deep:true,
+            immediate:true,
+            handler(newVal,oldVal){
+                console.log('@',newVal,oldVal)
+            }
+        })
+        // 간소화
+        vm.$watch('isHot',function(newVal,oldVal){
+            console.log('@',newVal,oldVal)
+        })
+        */
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind</title>
+</head>
+<body>
+
+    <script  type="text/javascript">
+
+        let obj = {x:100}
+        let obj2 = {y:200}
+
+        Object.defineProperty(obj2,'x',{
+
+             get(){
+                return obj.x
+             },
+
+             set(value){
+                obj.x = value
+             }
+        })
+
+        /* 
+        크롬 콘솔 에서 입력 
+        obj2.x
+            100
+        obj2.x = 130
+            130
+        obj2.x
+            130
+        obj2
+        */
+    </script>
+</body>
+</html>

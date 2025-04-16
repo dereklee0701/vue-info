@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+    
+    <div id="root">
+        <h2>회원배열(배열)</h2>
+        <ul>
+            <li v-for="(itm,index) in persons" :key="index">
+                {{itm.name}}-{{itm.age}}
+            </li>
+        </ul>
+        <h2>자동차(객체)</h2>
+        <ul>
+            <li v-for="(v,k) in car" :key="k">
+                {{v}}-{{k}}
+            </li>
+        </ul>
+        <h2>문자열</h2>
+        <ul>
+            <li v-for="(v,k) in str" :key="k">
+                {{v}}-{{k}}
+            </li>
+        </ul>
+        <h2>지정 회수</h2>
+        <ul>
+            <li v-for="(v,k) in 5" :key="k">
+                {{v}}-{{k}}
+            </li>
+        </ul>
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false 
+
+        new Vue({
+            el:'#root',
+            data:{
+                persons:[
+                    {id:'001',name:'홍길동',age:18},
+                    {id:'002',name:'사기다마',age:19},
+                    {id:'003',name:'김뚱냥',age:20},
+                ],
+                car:{
+                    name:'현대',
+                    price:10000,
+                },
+                str:'hello'
+            },
+        })
+
+    </script>
+</body>
+</html>

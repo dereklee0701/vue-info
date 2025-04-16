@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let data = {
+            name:'hello',
+            addr:'aaa'
+        }
+
+        const ob = new Obsever(data)
+
+        console.log(ob)
+
+        let vm = {}
+        vm._data = data = ob
+
+        function Obsever(obj) {
+            const keys = Object.keys(obj)
+            keys.forEach((k)=>{
+                Object.defineProperty(this,k,{
+                    get(){
+                        return obj[k]
+                    }, 
+                    set(val){
+                        console.log('데이터 변경 감지 화면 갱신')
+                        obj[k] = val
+                    }
+                })
+            })
+        }
+        
+    </script>
+</body>
+</html>

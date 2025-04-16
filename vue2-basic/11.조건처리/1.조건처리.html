@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+    
+    <div id="root">
+        <h2>현재 값 : {{n}}</h2>
+        <button @click="n++">n + 1</button>
+<!-- 
+        <h2 v-show="false">hello show</h2>
+        <h2 v-show="1===2">hello show</h2>
+ -->
+<!-- 
+        <h2 v-if="false">hello if</h2>
+        <h2 v-if="1===2">hello if</h2>
+-->      
+        <div v-if="n === 1">Angular</div>
+        <div v-else-if="n === 2">React</div>
+        <div v-else-if="n === 3">Vue</div>
+        <div v-else> test</div>
+        
+        <template v-if="n === 5">
+            <div>hellos</div>
+        </template>
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false 
+
+        new Vue({
+            el:'#root',
+            data:{
+                n:0
+            },
+        })
+
+    </script>
+</body>
+</html>

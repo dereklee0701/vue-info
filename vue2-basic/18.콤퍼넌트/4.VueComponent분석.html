@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+    
+    <div id="root">
+        <hello></hello>
+        <test></test>
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false
+
+        const hello = Vue.extend({
+            template:`
+                <div>
+                    <h3>{{msg}}</h3>
+                    <button @click="check">check this</button>
+                </div>
+            `,
+            data(){
+                return {
+                   msg:'hello world'
+                }
+            },
+            methods: {
+                check(){
+                    console.log('hello,this',this);
+                }
+            },
+        })
+
+        const test = Vue.extend({
+            template:`
+                <div>
+                    <h3>{{msg}}</h3>
+                    <button @click="check">check this</button>
+                </div>
+            `,
+            data(){
+                return {
+                   msg:'안녕'
+                }
+            },
+            methods: {
+                check(){
+                    console.log('test,this',this);
+                }
+            },
+        })
+
+        console.log('@',hello);
+        console.log('#',test);
+        console.log('eq = ',hello === test);
+
+        new Vue({
+            el:'#root',
+            components:{
+                hello,
+                test
+            }
+        })
+    </script>
+</body>
+</html>

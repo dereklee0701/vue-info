@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+    
+    <div id="root">
+        <!-- <hello></hello> -->
+        <!-- <Hello></Hello> -->
+        <!-- <my-hello></my-hello> -->
+        <!-- <MyHello></MyHello> -->
+        <!-- <myhello></myhello> -->
+        <myhello/>      <!-- 태그 많을시 문제 됨 cli 에서는 문제 없음 -->
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false
+
+        /* const hello = Vue.extend({
+            template:`
+                <div>
+                    <h3>{{msg}}</h3>
+                </div>
+            `,
+            data(){
+                return {
+                   msg:'hello world'
+                }
+            }
+        }) */
+
+        const hello = {
+            template:`
+                <div>
+                    <h3>{{msg}}</h3>
+                </div>
+            `,
+            data(){
+                return {
+                   msg:'hello world'
+                }
+            }
+        }
+
+        new Vue({
+            el:'#root',
+            // 지역 변수로 선언시
+            components:{
+                // hello:hello,
+                // Hello:hello
+                // 'my-hello':hello
+                // MyHello:hello   // cli 에서는 가능함
+                myhello:hello
+            }
+        })
+    </script>
+</body>
+</html>

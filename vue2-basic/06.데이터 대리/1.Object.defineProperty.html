@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind</title>
+</head>
+<body>
+
+    <script  type="text/javascript">
+
+        let number = 18
+        let person = {
+            name:'홍길동',
+            sex:'남'
+        }
+
+        Object.defineProperty(person,'age',{
+            /* 
+            value:18,       // 값 지정
+            enumerable:true,    // for 문으로 출력 여부
+            writable:true,      // 수정 가능 여부
+            configurable:true   // 삭제 가능 여부
+             */
+
+             get(){
+                console.log('getter 함수 호출')
+                return number
+             },
+
+             set(value){
+                console.log('setter 함수 호출 값은:',value)
+                number = value
+             }
+        })
+
+        console.log(person)
+        /* 
+            크롬 콘솔 에서 
+            number = 20
+            person > age 클릭
+            person.age=22
+            person > age 클릭
+        */
+    </script>
+</body>
+</html>

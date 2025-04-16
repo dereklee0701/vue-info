@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+    
+    <div id="root">
+        <h1>data info</h1>
+        <button @click="addSex">add sex</button>
+        <h3>name : {{name}}</h3>
+        <h3>addr : {{addr}}</h3>
+        <h1>school info</h1>
+        <h3>school-name : {{school.name}}</h3>
+        <h3>school-age : {{school.age}}</h3>
+        <h3 v-if="school.sex">school-sex : {{school.sex}}</h3>
+        <h1>school student list</h1>
+        <ul>
+            <li v-for="(item, index) in school.student" :key="index">
+                {{item.name}} -- {{item.age}}
+            </li>
+        </ul>
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false 
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                name:'hello',
+                addr:'aaa',
+                school:{
+                    name:'hh',
+                    age:23,
+                    student:[
+                        {name:'tom',age:22},
+                        {name:'jerry',age:22}
+                    ]
+                }
+            },
+            methods: {
+                addSex(){
+                    // Vue.set(this.school,'sex','F')
+                    this.$set(this.school,'sex','F')
+                }
+            },
+        })
+
+    </script>
+</body>
+</html>

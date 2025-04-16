@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문법</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+
+    <div id="root">
+        <h1>삽입문법</h1>
+        <h3>hello {{name}}</h3>
+        <hr/>
+        <h1>지령문법</h1>
+        <a v-bind:href="shcool.url">네이버</a>
+        <a :href="shcool.name">구글</a>
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false 
+
+        new Vue({
+            el:'#root',
+            data:{
+                name:'test',
+                shcool:{
+                    name:'naver',
+                    url:'www.naver.com'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

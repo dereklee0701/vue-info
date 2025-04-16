@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript" src="../js/dayjs.min.js"></script>
+<body>
+
+    <div id="root">
+        <h3>현재 시간 : {{time}}</h3>
+        <h3>포맷 : {{ftime}}</h3>   <!-- computed 로 구현 -->
+        <h3>포맷 : {{getTime()}}</h3>   <!-- 함수로 구현 -->
+        <h3>포맷 : {{time | timeFormat}}</h3>   <!-- filter 로 구현 -->
+        <h3>포맷 : {{time | timeFormat | test('YYYY-MM-DD')}}</h3>  <!-- 2개 필터 동시 사용 순서주의 -->
+    </div>
+    
+    <div id="root2">
+        <h3>{{msg | mySplic}}</h3>
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false
+        // 전역 설정
+        Vue.filter('mySplic',function(value){
+            return value.slice(0,4)
+        })
+
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                time:1718702422348
+            },
+            computed:{
+                ftime(){
+                    return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+                }
+            },
+            methods: {
+                getTime(){
+                    return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+                }
+            },
+            filters:{
+                timeFormat(value){
+                    return dayjs(value).format('YYYY-MM-DD HH:mm:ss')
+                },
+                test(value,type='YYYY-MM-DD HH:mm:ss') {
+                    return dayjs(value).format(type)
+                }
+            }
+        })
+
+        new Vue({
+            el:'#root2',
+            data:{
+                msg:'hello'
+            },
+        })
+    </script>
+</body>
+</html>

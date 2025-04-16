@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+    
+    <div id="root">
+        <h1>오늘은 {{info}}</h1>
+        <button @click="change">click</button>
+        <hr/>
+        <h1>A : {{number.a}}</h1>
+        <button @click="number.a++">a+1</button>
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false 
+
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                isHot:false,
+                number:{
+                    a:1,
+                    b:2
+                }
+            },
+            computed:{
+                info(){
+                    return this.isHot ? '덥다' : '춥다'
+                }
+            },
+            methods:{
+                change(){
+                    this.isHot = !this.isHot 
+                } 
+            },
+            watch:{
+                isHot:{
+                    handler(newVal,oldVal){ // isHot 값 변경시 호출 됨
+                        console.log('@',newVal,oldVal)
+                    }
+                },
+                // data 에 다양한 데이터 존재 시 해당 방식 사용
+                /* 'number.a':{
+                    handler(){
+                        console.log('')
+                    }
+                }, */
+                // 모든 number 에 대상을 감시하는데 deep 설정 없으면 값비교 가 안되서 결과 없음
+                number:{
+                    deep:true,
+                    handler(){
+                        console.log('##')
+                    }
+                }
+            } 
+        })
+
+    </script>
+</body>
+</html>

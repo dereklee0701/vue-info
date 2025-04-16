@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+
+    <div id="root">
+        <h1>이름 : {{name}}</h1>
+        <button v-on:click="showInfo">click1</button>
+        <button @click="showInfo2">click2</button>  <!-- 아무 전달값 없으면 기본으로 event 전달함 -->
+        <button @click="showInfo3($event,22)">click3</button>   <!-- $event 는 내장 함수로 다른 값과 혼합하여 전달을 위해 만듬 -->
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false 
+
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                name:'홍길동',
+            },
+            methods:{
+                showInfo(){
+                    alert('hello')
+                },
+                showInfo2(event){
+                    console.log(event.target.innerText)
+                },
+                showInfo3(event,number){
+                    console.log(event.target.innerText, number)
+                },
+            }
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+    
+    <div id="root">
+
+        <ul>
+            <li v-for="(item, index) in hobby" :key="index">
+                {{item}}
+            </li>
+        </ul>
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false 
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                name:'hello',
+                addr:'aaa',
+                school:{
+                    name:'hh',
+                    age:23,
+                    student:[
+                        {name:'tom',age:22},
+                        {name:'jerry',age:22}
+                    ],
+                },
+                hobby:['문신','담배','술','파마']
+            },
+            methods: {
+                addSex(){
+                    // Vue.set(this.school,'sex','F')
+                    this.$set(this.school,'sex','F')
+                }
+            },
+        })
+        /*
+        vue 에서 내부 배열 추가 삭제 등 처리시 배열에서 함수들로 가능하다 ,  
+            push()
+            pop()
+            shift()
+            unshift()
+            splice()
+            sort()
+            reverse()
+        // set 함수로도 변경 가능
+        Vue.set(vm.hobby,0,'F')
+        */
+    </script>
+</body>
+</html>

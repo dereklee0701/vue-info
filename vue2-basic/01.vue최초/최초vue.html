@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>최초vue</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+
+    <!-- 콘테이너 준비 -->
+    <div id="root">
+        <h1>hello {{name.toUpperCase()}}, {{addr}} , {{Date.now()}}</h1>
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false    // 힌트 제거 설정 현재 버전은 안됨
+        // el : element
+        new Vue({
+            el:'#root',     // id='root' => #root , class='root' => '.class' : css 의 처리방식 ,document.getElementById 도 됨 
+            data:{
+                name:'test',
+                addr:'vue home'
+            }
+        })
+
+    </script>
+</body>
+</html>

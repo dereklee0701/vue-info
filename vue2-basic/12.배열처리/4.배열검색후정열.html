@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+    
+    <div id="root">
+        <h2>회원</h2>
+        <input type="text" placeholder="검색어 입력." v-model="keyWorld">
+        <button @click="sortType = 2">오름차</button>
+        <button @click="sortType = 1">내림차</button>
+        <button @click="sortType = 0">원순서</button>
+        <ul>
+            <li v-for="(itm,index) in flPerson" :key="index">
+                {{itm.name}}-{{itm.age}}-{{itm.sex}}
+            </li>
+        </ul>
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false 
+    
+        // computed 로 구현
+        new Vue({
+            el:'#root',
+            data:{
+                keyWorld:'',
+                sortType:0,
+                persons:[
+                    {id:'001',name:'홍길동',age:31,sex:'F'},
+                    {id:'002',name:'김길동',age:33,sex:'F'},
+                    {id:'003',name:'사기다마',age:19,sex:'M'},
+                    {id:'004',name:'사기군',age:20,sex:'M'},
+                ],
+            },
+            computed:{
+                flPerson(){
+                    const arr = this.persons.filter((p)=>{
+                        return p.name.indexOf(this.keyWorld) !== -1
+                    })
+                    if (this.sortType) {
+                        arr.sort((p1,p2)=>{
+                            return this.sortType === 1 ? p2.age - p1.age : p1.age - p2.age
+                        } )
+                    }
+                    return arr;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

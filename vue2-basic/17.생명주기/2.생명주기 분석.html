@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+    
+    <div id="root">
+        <h3>출력값 {{n}}</h3>
+        <button @click="add">n+1</button>
+        <button @click="bye">vm 제거</button>
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false
+
+        new Vue({
+            el:'#root',
+            // root 요소 는 반드시 1개 다
+            // template:`
+            //     <div>
+            //         <h3>출력값 {{n}}</h3>
+            //     <div>
+            // `,
+            data:{
+                n:1,
+            },
+            methods: {
+                add(){
+                    console.log('add'); // vm 이 제거 되도 함수 실행됨  
+                    this.n++
+                },
+                bye(){
+                    this.$destroy() 
+                }
+            },
+            beforeCreate() {
+                console.log('beforeCreate');
+            },
+            created() {
+                /* 
+                    생성전 dom 조작 해도 쇼용없음
+                */
+                console.log('created');
+            },
+            beforeMount() {
+                console.log('beforeMount');
+            },
+            mounted() {
+                /* 
+                    페이지 로딩 완료 , vue 준비 완료
+                */
+               console.log('mounted'); 
+            },
+            beforeUpdate() {
+                console.log('beforeUpdate');
+            },
+            updated() {
+                /* 
+                    데이터 변화 가능
+                */
+                console.log('updated');
+            },
+            beforeDestroy() {
+                /* 
+                    this.$destroy() 실행후
+                */
+                console.log('beforeDestroy');
+            },
+        })
+    </script>
+</body>
+</html>

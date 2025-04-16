@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+    
+    <div id="root">
+        <h2>회원</h2>
+        <input type="text" placeholder="검색어 입력." v-model="keyWorld">
+        <ul>
+            <li v-for="(itm,index) in flPerson" :key="index">
+                {{itm.name}}-{{itm.age}}-{{itm.sex}}
+            </li>
+        </ul>
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false 
+
+        // watch 로 구현
+        /* 
+        new Vue({
+            el:'#root',
+            data:{
+                keyWorld:'',
+                persons:[
+                    {id:'001',name:'홍길동',age:18,sex:'F'},
+                    {id:'002',name:'김길동',age:19,sex:'F'},
+                    {id:'003',name:'사기다마',age:20,sex:'M'},
+                    {id:'004',name:'사기군',age:20,sex:'M'},
+                ],
+                flPerson:[]
+            },
+            watch:{
+                keyWorld:{
+                    immediate:true,
+                    handler(val){
+                        this.flPerson = this.persons.filter((p)=>{
+                            return p.name.indexOf(val) !== -1
+                        })
+                    }
+                }
+            }
+        })
+        */
+    
+        // computed 로 구현
+        new Vue({
+            el:'#root',
+            data:{
+                keyWorld:'',
+                persons:[
+                    {id:'001',name:'홍길동',age:18,sex:'F'},
+                    {id:'002',name:'김길동',age:19,sex:'F'},
+                    {id:'003',name:'사기다마',age:20,sex:'M'},
+                    {id:'004',name:'사기군',age:20,sex:'M'},
+                ],
+            },
+            computed:{
+                flPerson(){
+                    return this.persons.filter((p)=>{
+                        return p.name.indexOf(this.keyWorld) !== -1
+                    }) 
+                }
+            }
+        })
+    </script>
+</body>
+</html>

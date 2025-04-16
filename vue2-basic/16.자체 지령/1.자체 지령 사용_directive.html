@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+    
+    <div id="root">
+        <h3 >현재값 : <span v-text="n"></span></h3>
+        <h3 >10배 : <span v-big="n"></span></h3>
+        <button @click="n++">n+1</button>
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false
+
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                n:1,
+            },
+            directives:{
+                big(element,biding){
+                    element.innerText = biding.value *10
+                }
+            }
+        })
+    </script>
+</body>
+</html>

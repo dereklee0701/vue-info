@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+    
+    <div id="root">
+        <hello></hello>
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false
+
+        const hello = Vue.extend({
+            template:`
+                <div>
+                    <h3>{{msg}}</h3>
+                </div>
+            `,
+            data(){
+                return {
+                   msg:'hello world'
+                }
+            },
+            methods: {
+                check(){
+                    console.log('hello,this',this);
+                }
+            },
+        })
+
+        const vm = new Vue({
+            el:'#root',
+            components:{
+                hello
+            }
+        })
+
+        console.dir(hello.prototype.__proto__);
+        console.dir(Vue.prototype);
+        console.log(hello.prototype.__proto__ === Vue.prototype);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+
+    <div id="root">
+        <h1>hello {{name}}</h1>
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false 
+        /* 
+        const vm = new Vue({
+            // el:'#root',  // el 의 첫번재 방식
+            data:{
+                name:'test'
+            }
+        })
+        console.log(vm)
+        vm.$mount('#root')  // el 의 두번재 방식 
+         */
+
+         new Vue({
+            el:'#root',
+            /* 
+            data:{  // data의 첫번재 방식
+                name:'asdasd'
+            }
+            */
+            /* 
+            data:function(){    // data의 두번재 방식
+                console.log('@',this)   // this 는 Vue 객체대상
+                return{
+                    name:'22222'
+                }
+            }
+             */
+            /* 
+            data:()=>{
+                console.log('@',this)   // this 는 window 이다
+                return {
+                    name:'22222'
+                }
+            } 
+            */
+            data(){    // data의 두번재 방식 간소화 방식
+                console.log('@',this)   // this 는 Vue 객체대상
+                return{
+                    name:'22222'
+                }
+            }
+         })
+    </script>
+</body>
+</html>

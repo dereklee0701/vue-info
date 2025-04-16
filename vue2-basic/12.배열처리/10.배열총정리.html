@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="../js/vue.js"></script>
+<body>
+    
+    <div id="root">
+
+        <div>
+            <button @click="user.age++">나이+1</button>
+            <button @click="addSex">성별추가</button>
+            <button @click="user.sex = 'm'">추가된 성별 변경</button>
+            <button @click="addFirstForFriend">배열앞에 친구 추가</button>
+            <button @click="updateFirstFriendName">첫번재 친구 이름 변경</button>
+            <button @click="addHobby">취미추가</button>
+            <button @click="updateFirstHobby">첫번재 취미변경</button>
+            <button @click="filterHobby">취미필터</button>
+        </div>
+
+        <h4>이름 : {{user.name}}</h4>
+        <h4>나이 : {{user.age}}</h4>
+        <h4 v-if="user.sex">성별 : {{user.sex}}</h4>
+        <h4>취미 : </h4>
+        <ul>
+            <li v-for="(item, index) in user.hobby" :key="index">
+                {{item}}
+            </li>
+        </ul>
+        <h4>친구 : </h4>
+        <ul>
+            <li v-for="(item, index) in user.friends" :key="index">
+                {{item.name}} - {{item.age}}
+            </li>
+        </ul>
+    </div>
+
+    <script  type="text/javascript">
+        Vue.config.productionTip = false
+
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                user:{
+                    name:'홍길동',
+                    age:23,
+                    hobby:['문신','담배','술','파마'],
+                    friends:[
+                        {name:'사기',age:22},
+                        {name:'다마',age:22}
+                    ],
+                },
+            },
+            methods: {
+                addSex(){
+                    // this.$set(this.user,'sex','남')
+                    Vue.set(this.user,'sex','남')
+                },
+                addFirstForFriend(){
+                    this.user.friends.unshift({name:'나비',age:22})
+                },
+                updateFirstFriendName(){
+                    this.user.friends[0].name = '강호동'
+                },
+                addHobby(){
+                    this.user.hobby.push('노래')
+                },
+                updateFirstHobby(){
+                    this.user.hobby.splice(0, 1, '쇼핑')
+                },
+                filterHobby(){
+                    this.user.hobby = this.user.hobby.filter((h) => {
+                        return h !== '파마'
+                    })
+                }
+            },
+        })
+    </script>
+</body>
+</html>
